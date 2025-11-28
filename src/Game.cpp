@@ -6,6 +6,8 @@ Game::Game()
     window.setFramerateLimit(144);
 
     // Create Player Ship
+    playerShip = std::make_unique<PlayerShip>();
+
     // Create initial asteroid
 }
 
@@ -30,15 +32,26 @@ void Game::ProcessInput()
             window.close();
         }
     }
+
+    playerShip->RotateLeft( sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left));
+    playerShip->RotateRight( sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right));
 }
 
 void Game::Update(float deltaTime)
 {
-
+    if (playerShip)
+    {
+        playerShip->Update(deltaTime);
+    }
 }
 
 void Game::Render()
 {
     window.clear();
+    if (playerShip)
+    {
+        playerShip->Draw(window);
+    }
+
     window.display();
 }

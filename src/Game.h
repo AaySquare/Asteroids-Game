@@ -1,6 +1,9 @@
 ﻿#pragma once
 
+#include <memory>
+
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "PlayerShip.h"
 
 class Game
 {
@@ -16,4 +19,6 @@ private:
 private:
     sf::RenderWindow window;
     sf::Clock clock;
+
+    std::unique_ptr<PlayerShip> playerShip;
 };
